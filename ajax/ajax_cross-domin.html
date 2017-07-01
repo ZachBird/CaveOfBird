@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>用jQuery解决ajax跨域</title>
+    <script src="js/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <!--在此页面去访问别的站点的页面，这是就会产生跨域
+        例如主站点是天猫（域名拦截后，其实是本地站点），现在想去请求极速数据（一个数据接口网站）
+        这时候就会产生跨域，即跨域名访问
+    -->
+    <input type="text" id="telephone" placeholder="手机归属地查询">
+    <input type="button" value="查询">
+    <div id="info"></div>
+    <script>
+    /*    var xhr = new XMLHttpRequest();
+        xhr.open("get","http://api.jisuapi.com/shouji/query?appkey=xxx&");
+        xhr.send(null);
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState==4 && xhr.status==200){
+                var data = xhr.responseText;
+                alert(data);
+            }
+        }
+      以上代码无法解决跨域*/
+        $(function(){
+            $("input[type = button]").on("click",function(){
+                var telephone = document.getElementById("telephone").value;
+                //jQuery方法封装的XMLHttpRequest 对象提供的一个方法
+                //jQuery这个方法 底层还是使用XMLHttpRequest 发送请求，还是有跨域限制
+                $.ajax({
+                    type: "get",
+                    url: "ajaxExample.php",
+                    data: "appkey=xxx&shouji="+telephone,//appkey是极速数据你注册时给你分配的appkey
+                    dataType:"jsonp",
+                    success: function(msg){
+                        console.log(msg);
+                        var address = msg.result.province;
+                        var company = msg.result.company;
+                        document.getElementById("info").innerHTML = "所属省份："+address+"</br>"+"所属公司："+company;
+                    }
+                })
+            })
+
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    a {
+    position: relative;
+    left:50px;
+    display: inline-block;
+    outline: none;
+    text-decoration: none;
+    color: #000;
+    font-size: 32px;
+    padding: 5px 10px;
+    }
+
+    a:hover::before, a:hover::after { position: absolute; }
+    a:hover::before { content: "\e610"; left: -20px; }
+    a:hover::after { content: "\5D"; right:  -20px; }
+    </style>
+</head>
+<body>
+    <!--::before ::after-->
+    <a>wwww</a>
+</body>
+</html>

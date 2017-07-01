@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="ajax 交互的四个步骤"/>
+    <div class="info"></div>
+    <script>
+        //获取元素，绑定事件
+        document.querySelector("input").onlick = function(){
+            //1.创建XMLHttpRequest对象
+            var xhr = new XMLHttpRequest();
+            //2.要跟服务器交互，必须交代传送方式并且打开要交互的链接地址（url），还有是否异步交互（true/flase）
+            xhr.open("post","ajaxExample.php",true);
+                //若发送请求的方式为post，还要给请求设置头部（setRequestHeader）,不设置头部，post的数据服务器接收不到
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                /**设置头部的内容是固定的，需要的时候查询，或者
+                /*<form action="" method="post" enctype="application/x-www-form-urlencoded">有的IDE会有自动填充功能，可以借助查询
+                */
+            //3.要给服务器发送数据，发送参数数据到服务器(参数名 = 参数)
+            xhr.send("username = bird");
+            //4.要接收服务器数据，服务器在返回数据给客户端的时候会返回一些状态，所以要监听服务器端状态的改变，然后进行操作
+            //时刻准备监听这服务器端状态的改变
+            xhr.onreadystatechange = function(){
+                /**服务器在返回数据的过程当中，readyState会有0，1，2，3，4这些状态
+                0: 请求未初始化
+                1: 服务器连接已建立
+                2: 请求已接收
+                3: 请求处理中
+                4: 请求已完成，且响应已就绪
+                */
+                //其中4这个状态响应完成
+                //怎么去获取这个状态，所有的操作都是通过xhr这个对象完成
+                //这里处理业务逻辑
+                if(xhr.readyState==4 && xhr.status==200){//代表响应完成
+                    //响应完成并不代表响应成功
+                    //故还要判断服务器端是否响应成功，如果服务器端返回了一个200的状态码，代表响应成功
+                    //所以把二者合二为一如上：↑
+                    //if(xhr.status==200){
+                        //继续做操作
+                        //获取服务端返回的数据
+                        var data = xhr.responseText;
+                        document.querySelector("info").innerHTML = data;
+                    //}
+
+
+                }
+            }
+
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="Author" content="bird">
+    <meta name="Description" content="盒子布局，简单上浮动画，过渡">
+    <meta name="Keywords" content="">
+    <title>小米商品展示</title>
+    <style type="text/css">
+        *{  /*通配符选择器,选择所有标签*/
+            margin:0;/*清除默认外边距.默认8px*/
+            padding:0;/*清除默认内边距.默认*/
+        }
+        body{
+            background:#f5f5f5;
+        }
+        li{
+            list-style:none;/*清除默认小圆点*/
+        }
+        a{
+            font-size:12px;
+            text-decoration:none;/*清除下划线*/
+            color:#434343;
+        }
+        h3{
+            text-align:center;
+        }
+        p{
+            display:block;
+
+            text-align:center;
+            font-size:12px;
+            font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei";
+            text-overflow:ellipsis;
+
+        }
+        #content{
+             width:1226px;
+             height:610px;
+             margin:100px auto;/*2参数外边距:上下边距 左右边距....伪元素清除外边距重合*/
+             padding:10px;
+             box-shadow:0 0 4px #434343;/*盒子阴影:径向位移 纵向位移 扩散半径及羽化程度 颜色*/
+         }
+        #content .c_left{
+            position:relative;
+            top:0;
+            left:0;
+            width:234px;
+            height:610px;
+            float:left;
+         }
+        #content .c_left:hover{
+            top:-2px;
+            box-shadow:0 0 5px #222;
+            transition:all .2s linear;
+        }
+        #content .c_right:hover{
+            width:992px;
+            height:610px;
+            float:right;
+         }
+        #content .c_right ul li{
+            position:relative;/*相对定位父级*/
+            top:0;
+            right:0;
+            width:234px;
+            height:273px;
+            margin:0 0 12px 14px;/*4参数写法是从上开始顺时针*/
+            padding:10px 0 15px 0;
+            float:left;
+            background:#fff;
+            overflow:hidden;
+            transition: all .2s linear;
+         }
+         #content .c_right ul li:hover{
+            box-shadow:0px 0px 8px #222;
+            top:-3px;
+         }
+         #content .c_right ul li:hover .mask{
+            bottom:0;
+         }
+        #content .c_right ul li .pic{
+            width:160px;
+            height:160px;
+            margin:10px auto;
+         }
+        .pic img{
+            width:160px;
+            height:160px;
+         }
+        h3.title a{
+            font-size:14px;
+        }
+        p.price{
+            margin:0 10px 14px 10px;/*top right bottom left*/
+            font-size:14px;
+            color:#f60;
+        }
+        p.desc{
+            margin:0 10px 10px 10px;
+            color:#b0b0b0;
+        }
+        .mask{
+            position:absolute;/*绝对定位*/
+            bottom:-65px;
+            width:170px;
+            height:65px;
+            color:#fff;
+            background:#abf;
+            padding:0 32px 0 32px;
+            transition:.5s;/*过渡*/
+        }
+        .mask p{
+            font-size:16px;
+            margin-top:10px;
+        }
+    </style>
+</head>
+
+<body>
+   <div id="content">
+        <div class="c_left">
+            <img src="images/left.jpg" width="234" height="610">
+        </div>
+        <div class="c_right"><!--多元素有序排列,样式差不多的时候,用ul做-->
+            <ul>
+                <li>
+                    <div class="pic">
+                        <img src="images/01.jpg" width="1600" height="1600">
+                    </div>
+                    <h3 class="title" src="#"><a href="#">米家IH电饭煲 4L</a></h3>
+                    <p class="desc">3000 + 煮米方案，200 + 烹饪菜单</p>
+                    <p class="price">149元</p>
+                    <div class="mask"><p>强，无敌，想再买</p></div>
+                </li>
+                <li>
+                    <div class="pic">
+                        <img src="images/2.jpg" width="1600" hright="1600">
+                    </div>
+                    <h3 class="title" src="#"><a>小米手环2</a></h3>
+                    <p class="desc">看的见的时刻，和你的每一步</p>
+                    <p class="price">149元</p>
+                    <div class="mask"><p>强，无敌，想再买</p></div>
+                </li>
+                <li>
+                    <div class="pic">
+                        <img src="images/3.jpg" width="1600" hright="1600">
+                    </div>
+                    <h3 class="title" src="#"><a>20000mAh小米移动电源2</a></h3>
+                    <p class="desc">大容量|双 USB 输出|高密度锂聚合物电芯|双向快充</p>
+                    <p class="price">149元</p>
+                    <div class="mask"><p>强，无敌，想再买</p></div>
+                </li>
+                <li>
+                    <div class="pic">
+                        <img src="images/1.jpg" width="1600" hright="1600">
+                    </div>
+                    <h3 class="title" src="#"><a>小米路由器3C</a></h3>
+                    <p class="desc">APP智能控制，安全防蹭网</p>
+                    <p class="price">99元</p>
+                    <div class="mask"><p>强，无敌，想再买</p></div>
+                </li>
+                <li>
+                    <div class="pic">
+                        <img src="images/5.jpg" width="1600" hright="1600">
+                    </div>
+                    <h3 class="title" src="#"><a>小米无人机4K版</a></h3>
+                    <p class="desc">探索触手可及的新视角</p>
+                    <p class="price">2999元</p>
+                    <div class="mask"><p>强，无敌，想再买</p></div>
+                </li>
+                <li>
+                    <div class="pic">
+                        <img src="images/6.jpg" width="1600" hright="1600">
+                    </div>
+                    <h3 class="title" src="#"><a>九号平衡车</a></h3>
+                    <p class="desc">年轻人的酷玩具，骑行遥控两种玩法</p>
+                    <p class="price">1999元</p>
+                    <div class="mask"><p>强，无敌，想再买</p></div>
+                </li>
+                <li>
+                    <div class="pic">
+                        <img src="images/7.jpg" width="1600" hright="1600">
+                    </div>
+                    <h3 class="title" src="#"><a>米家小白智能摄像机</a></h3>
+                    <p class="desc">360° 全景拍摄，1080P 高清摄像，红外夜视，语音互动</p>
+                    <p class="price">399元</p>
+                    <div class="mask"><p>强，无敌，想再买</p></div>
+                </li>
+                <li>
+                    <div class="pic">
+                        <img src="images/8.jpg" width="1600" hright="1600">
+                    </div>
+                    <h3 class="title" src="#"><a>米兔儿童手表Q</a></h3>
+                    <p class="desc">Q弹糖果配色，11重安全设计，五重精准定位</p>
+                    <p class="price">299元</p>
+                    <div class="mask"><p>强，无敌，想再买</p></div>
+                </li>
+            </ul>
+        </div>
+   </div>
+</body>
+
+</html>

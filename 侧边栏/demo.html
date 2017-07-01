@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="Description" content="">
+    <meta name="Keywords" content="右侧边栏 jQuery初涉">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        img{
+            border:0;
+        }
+        ol, ul, li{
+            list-style:none;
+        }
+        a{
+            text-decoration:none;
+            color:#fff;
+        }
+        body{
+            height:3000px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="warp">
+        <div id="number">
+
+        </div>
+        <div id="content">
+        </div>
+
+        <a href="#"><em>1</em>万事屋</a>
+        <a href="#"><em>2</em>真选组</a>
+        <a href="#"><em>3</em>攘夷志士</a>
+        <a href="#"><em>4</em>宇宙海盗春雨</a>
+        <a href="#"><em>5</em>幕府</a>
+        <a href="#"><em>6</em>见回组</a>
+        <a href="#"><em>7</em>歌舞伎町</a>
+    </div>
+</body>
+<!-- <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script>
+    $("#warp").hover(function(){
+        //鼠标滑入
+        $(this).find("a").each(function(i){
+            var $this = $(this);
+            setTimeout(function(){
+                $this.stop().animate({left:"101px"},300);//动画属性 让这个值变化有过程
+            },50*i);//倒序计时器
+        });//遍历所有的a
+    },function(){
+        //鼠标滑出
+        $(this).find("a").each(function(i){
+            var $this = $(this);
+            setTimeout(function(){
+                $this.stop().animate({left:"0px"},300);//动画属性 让这个值变化有过程
+            },50*i);//倒序计时器
+        });
+    })
+</script> -->
+</html>

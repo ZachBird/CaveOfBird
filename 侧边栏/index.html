@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="Description" content="">
+    <meta name="Keywords" content="左侧边栏 jQuery初涉">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        img{
+            border:0;
+        }
+        ol, ul, li{
+            list-style:none;
+        }
+        a{
+            text-decoration:none;
+            color:#fff;
+        }
+        body{
+            height:3000px;
+            background:#d0d0d0;
+        }
+        #warp{
+            /* width:130px; */
+            /* height:300px; */
+            /* background:#b0b0ff; */
+            position:fixed;/*固定定位 相对于浏览器定位*/
+            left:-101px;
+            top:100px;
+        }
+        #warp a{
+            display:block;/*！！行转块*/
+            line-height:30px;/*行高*/
+            border-bottom:2px solid #aaa;/*下边框 厚度 样式 颜色*/
+            position:relative;/*相对定位*/
+            padding-right:35px;
+            background:#5af;
+            color:#fff;
+            font-weight:bold;/*字体加粗*/
+            border-radius:6px 10px 10px 6px;
+        }
+        #warp a:hover{
+            background:#000;
+            color:#a00;
+        }
+        #warp a:hover em{
+            background:#012;
+            color:#a00;
+        }
+        #warp a em{
+            display:block;/*会换行 要脱离文本流 （浮动、定位）*/
+            /* vertical-align:middle; */
+            position:absolute;/**相对定位*/
+            top:0px;
+            right:0px;
+            width:30px;
+            text-align:center;
+            background:#29f;
+            font-style:normal;
+            border-radius:0 8px 8px 0;/**圆角：2个值：左上右下 右上左下
+                                      /*       3个值：左上  右上左下  右下
+                                      /*       4个值：↖ ↗ ↘ ↙
+                                      */
+        }
+        @-webkit-keyframes mymove{ /* Safari and Chrome */
+        from {top:0px;}
+        to {top:200px;}
+        }
+
+    </style>
+</head>
+<body>
+    <!--块级元素（有宽高 占一行） 行内元素（文字样式 没有宽高 不独占一行） 行内块级元素-->
+    <div id="warp">
+        <a href="#">万事屋<em>1</em></a>
+        <a href="#">真选组<em>2</em></a>
+        <a href="#">攘夷志士<em>3</em></a>
+        <a href="#">宇宙海盗春雨<em>4</em></a>
+        <a href="#">幕府<em>5</em></a>
+        <a href="#">见回组<em>6</em></a>
+        <a href="#">歌舞伎町<em>7</em></a>
+    </div>
+    <!-- a和em分别设置不同的颜色，用hover就不能统一改变背景颜色了 -->
+</body>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script>
+    //问题：怎么在onmouseover和onmouseout中间实现悬停一段时间？clearTimeout();不知道该放在哪儿。
+    var t;
+    $("#warp").hover(function(){
+        //鼠标滑入
+        //遍历所有的a
+        $(this).find("a").each(function(i){
+            var $this = $(this);
+            setTimeout(function(){
+                $this.stop().animate({left:"101px"},300);//动画属性 让这个值变化有过程
+            },50*i);//倒序计时器
+        });
+    },function(){
+        //鼠标滑出
+        $(this).find("a").each(function(i){
+            var $this = $(this);
+
+            t = setTimeout(function(){
+                        $this.stop().animate({left:"0px"},600);//delay()虽然能实现鼠标移入后悬停的功能，但存在BUG，会重复调用
+                    },50*i);//倒序计时器
+        });
+    })
+</script>
+</html>

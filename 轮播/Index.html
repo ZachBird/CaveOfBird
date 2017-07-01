@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Description" content="">
+    <meta name="Keywords" content="">
+    <title>轮播条</title>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        a{
+            text-decoration:none;
+            color:#fff;
+            font-size:16px;
+        }
+        #warp{
+            width:799px;
+            height:364px;
+            margin:50px auto;
+            position:relative;
+            background:#fff;
+        }
+        .left{
+            width:619px;
+            height:364px;
+            position:relative;
+            background:#222;
+        }
+        .left a{
+            display:none;
+            position:absolute;
+            top:0;
+            left:0;
+        }
+        .right{
+            width:180px;
+            height:364px;
+            position:absolute;
+            top:0px;
+            right:0px;
+        }
+        .icon{
+            width:180px;
+            height:91px;
+        }
+
+        .icon a{
+            display:block;
+            width:180px;
+            height:91px;
+            opacity:.5;
+            position:relative;
+        }
+        .icon a:hover{
+            opacity:1;
+        }
+        .icon a.on{
+            opacity:1;
+        }
+        /*想给a做背景透明度减少的效果，就需要选中a添加背景色，而不是直接给div添加，那样就变成a中字体添加透明度降低的效果了！*/
+        ._01 a{
+            background:#85bb23;
+        }
+        ._02 a{
+            background:#49b8da;
+        }
+        ._03 a{
+            background:#a83513;
+        }
+        ._04 a{
+            background:#646464;
+        }
+        .icon a img{
+            display:block;
+            position:absolute;
+            top:18px;
+            left:18px;
+        }
+        .icon a span{
+            display:block;
+            position:absolute;
+            top:28px;
+            left:92px;
+            width:72px;
+        }
+        .progress-bar{
+            position:absolute;
+            left:0;
+            bottom:0;
+            width:0;
+            height:7px;
+            border-radius:3px;
+        }
+        .dark_01{
+            background-color:#308900;
+        }
+        .dark_02{
+            background-color:#0088c4;
+        }
+        .dark_03{
+            background-color:#6f0b01;
+        }
+        .dark_04{
+            background-color:#272727;
+        }
+    </style>
+</head>
+<body>
+    <div id="warp">
+        <div class="left">
+            <a href="#">
+            <img src="images/img01.jpg"/>
+            </a>
+            <a href="#">
+            <img src="images/img02.jpg"/>
+            </a>
+            <a href="#">
+            <img src="images/img03.jpg"/>
+            </a>
+            <a href="#">
+            <img src="images/img04.jpg"/>
+            </a>
+        </div>
+        <div class="right">
+            <div class="icon _01">
+                <a href="#">
+                    <img src="images/img01s.png"/>
+                    <span>Acer 文件</span>
+                    <div class="progress-bar dark_01"></div>
+                </a>
+            </div>
+            <div class="icon _02">
+                <a href="#">
+                    <img src="images/img02s.png"/>
+                    <span>Acer 远程文件</span>
+                    <div class="progress-bar dark_02"></div>
+                </a>
+            </div>
+            <div class="icon _03">
+                <a href="#">
+                    <img src="images/img03s.png"/>
+                    <span>Acer 照片</span>
+                    <div class="progress-bar dark_03"></div>
+                </a>
+            </div>
+            <div class="icon _04">
+                <a href="#">
+                    <img src="images/img04s.png"/>
+                    <span>Acer 多媒体</span>
+                    <div class="progress-bar dark_04"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        //window.onload =
+        $(function(){
+            var left = document.getElementsByClassName("left")[0];
+            var left_a = left.getElementsByTagName("a");
+            var icons = document.getElementsByClassName("icon");
+            var pro_bar = document.getElementsByClassName("progress-bar");
+            var num = 0;
+            var length = 0;
+            left_a[0].style.display = "block";
+            icons[0].children[0].className = "on";//把icon下的a标签类名改为"on",提前设置类名为on的a标签的样式,可以即时对应
+            //左边图片的淡入淡出逻辑
+            for(var i=0;i<icons.length;i++){
+                icons[i].index = i;//要把点击的位置的值存起来 给数组icons的每个项添加自定义index属性，用于保存其位置值
+                icons[i].onclick = function () {//循环给icons绑定onclick事件
+                    length = 0;
+                    pro_bar[num].style.display = "none";
+                    pro_bar[num].style.width = "0px";
+
+                    icons[num].children[0].className = "";
+                    if(num != this.index){//同一icon点击不再重新“加载”
+                        $(".left a").eq(num).fadeOut();
+                    }
+                    num = this.index;//把num更新为当前点击的icon的位置值，然后显示相应的图片
+                    $(".left a").eq(num).fadeIn();
+                    icons[num].children[0].className = "on";
+                }
+            }
+            //右侧进度条的逻辑
+            var change = function (){
+                length = 0;//控制进度条宽度
+                var timer = setInterval(function () {
+                    length++;
+                    pro_bar[num].style.display = "block";
+                    pro_bar[num].style.width = length + "px";//进度条不断增长
+                    if(length==180){//进度条最长位置，然后进行下一个进度条
+                        clearInterval(timer);
+                        pro_bar[num].style.display = "none";
+                        pro_bar[num].style.width = "0px";
+                        $(".left a").eq(num).fadeOut();
+                        icons[num].children[0].className = "";
+                        num++;
+                        num%=icons.length;//取模运算控制循环，小于数组长度的没有影响，到最后一项时，又回到第一项。
+                        icons[num].children[0].className = "on";
+                        $(".left a").eq(num).fadeIn();
+                        change();
+                    }
+                },25);
+            }
+        change();
+        })
+        //1、jquery不要用window.onload，要用$(function () { ... });
+        //2、onclick内部，"change;"这句没有意义，onclick内部都是点击时立即执行的，如果要执行必须加括号；
+        //3、进度条的动画最好用css，现在没有用js做动画的了
+        //4、循环绑定事件，用闭包来做。或者绑定事件在icons的外层，利用事件冒泡的机制。看一下事件冒泡和捕获的概念。
+        //5、注意下浏览器兼容性，包括css和js
+    </script>
+</body>
+</html>

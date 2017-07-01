@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Description" content="">
+    <meta name="Keywords" content="轮播图 3D图层 Dbanner">
+    <meta name="Author" content="bird">
+    <title>Dbanner旋转特效轮播</title>
+    <style id="css">
+        *{margin:0; padding:0;}
+        li{list-style:none;}
+        #wrap{
+            width:800px;
+            height:360px;
+            margin:100px auto;
+            position:relative;
+        }
+        #images{
+            width:800px;
+            height:360px;
+            perspective:1500px;/*设置透视深度值，即从多远观察3D效果*/
+
+        }
+        #images ul li{/*整体移li,并不能改变旋转中心*/
+            height:360px;
+            float:left;
+            position:relative;
+            transform-style:preserve-3d;/*构建li的3D场景*/
+            transform:translateZ(-180px);
+        }
+        #images ul li div{
+            height:360px;
+            position:absolute;
+        }
+        /*构建4个面，然后把位置放好，固定在特定位置，再做旋转效果*/
+        #images ul li div:nth-child(1){/*nth-child(1)选择到第几个子div 括号为1 即为第一个，下同*/
+            top:-360px;/*上面*/
+            transform-origin:bottom;/*设置旋转的轴心*/
+            transform:translateZ(180px) rotateX(90deg);/*设置旋转角度，以X轴为基准
+                                                        *要把立方体的旋转重心整个移至div的左侧的中心位置
+                                                        */
+            background:url("images/3.png");
+        }
+        #images ul li div:nth-child(2){
+            top:360px;/*下面*/
+            transform-origin:top;
+            transform:translateZ(180px) rotateX(-90deg);
+            background:url("images/4.png");
+        }
+        #images ul li div:nth-child(3){
+            transform:translateZ(180px);
+            background:url("images/1.png");/*仅仅给每一个“前”面加上背景，只会出现很多相似的同一个位置的背景条
+                                            *所以要给每一个背景条以位移一个宽度的位置，来构建整个图片的效果
+                                            shifting即为位移的函数
+                                            */
+        }
+        #images ul li div:nth-child(4){
+            transform:translateZ(-180px) rotateX(180deg);/*后面 位移到后面的位置*/
+            background:url("images/2.png");
+        }
+        /* 按钮样式 */
+        #tab{
+            position:absolute;
+            right:10px;
+            bottom:10px;
+            width:100px;
+            height:20px;
+        }
+        #tab ul li{
+            width:20px;
+            height:20px;
+            background:#999;
+            color:#fff;
+            font-size:12px;
+            line-height:20px;
+            text-align:center;
+            border-radius:50%;
+            margin:0 2px;
+            float:left;
+            cursor:pointer;
+        }
+        #tab ul li:hover{
+            background:#ffcc66;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="images">
+            <ul><!--每一个立方体放在一个li中 拼成本demo做的4张图轮播 -->
+                <!--<li>&lt;!&ndash;要做3D效果，首先做一个立方体出来，因为不需要看到左右两个面，所以四个面即可，把每个面都放在div中&ndash;&gt;
+                    <div>上面</div>
+                    <div>下面</div>
+                    <div>前面</div>
+                    <div>后面</div>
+                </li> 这些小块的立方体要用JS动态添加-->
+
+            </ul>
+        </div>
+        <div id="tab">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    /* 给按钮绑定onclick事件，并给onclick事件写入旋转图片的内容 */
+    var uls = document.getElementsByTagName("ul")[0];/*获取ul集合*/
+    var oCss = document.getElementById("css");
+    var tab_li = document.getElementById("tab").getElementsByTagName("li");
+    var num = 0;
+    for(var i=0;i<tab_li.length;i++) {
+        tab_li[i].index = i;
+        function change() {
+
+            oCss.innerHTML += "#images ul li{transform:translateZ(-180px) rotateX(" + this.index*90 + "deg)}";
+            num = this.index;
+        }
+        tab_li[i].onclick = change;
+
+
+
+
+
+    }
+    setInterval(change(),50);
+
+    var lis = function(num){
+        var width = 800/num;
+        var divs = "";
+        var shifting = "";
+        var z = 0;
+        var layer = "";
+        var tran = "";
+        for(var i = 0;i < num;i++){
+            if(i>num/2){//从图层中间开始。要调整层级
+                z--;
+                layer += "#images ul li:nth-child("+(i+1)+"){z-index:"+z+";}";
+            }
+            divs += "<li><div></div><div></div><div></div><div></div></li>";
+            shifting += "#images ul li:nth-child("+(i+1)+") div{background-position:"+-i*width+"px;}";
+            tran += "#images ul li:nth-child("+(i+1)+"){transition:all .5s "+.03*i+"s;}";/*transition：过渡属性*/
+        }
+        uls.innerHTML = divs;//创建若干个小立方体放入ul中
+        oCss.innerHTML += tran + layer + shifting + "#images ul li,#images ul li div{width:" + width + "px;}";
+    }
+
+    lis(20);//一张图分的立体块个数
+</script>
+</html>
