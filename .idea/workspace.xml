@@ -40,31 +40,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="closure_ex1.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="closure_ex1.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/closure/closure_ex1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+            <state relative-caret-position="95">
+              <caret line="5" column="48" lean-forward="true" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ajaxDemo.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ajax/ajaxDemo.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="simple_counter.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="simple_counter.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/closure/simple_counter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" column="7" lean-forward="false" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+            <state relative-caret-position="114">
+              <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -73,7 +63,7 @@
       <file leaf-file-name="holy-grail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/layout/holy-grail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
+            <state relative-caret-position="19">
               <caret line="26" column="19" lean-forward="false" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
               <folding />
             </state>
@@ -121,6 +111,7 @@
         <option value="$PROJECT_DIR$/layout/holy-grail.html" />
         <option value="$PROJECT_DIR$/closure/simple counter.js" />
         <option value="$PROJECT_DIR$/closure/closure_ex1.html" />
+        <option value="$PROJECT_DIR$/closure/simple_counter.js" />
       </list>
     </option>
   </component>
@@ -137,7 +128,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -304,7 +295,7 @@
       <workItem from="1499051501776" duration="2646000" />
       <workItem from="1500625029392" duration="1204000" />
       <workItem from="1501511517376" duration="3683000" />
-      <workItem from="1502240404795" duration="4943000" />
+      <workItem from="1502240404795" duration="8970000" />
     </task>
     <task id="LOCAL-00001" summary="从WebStorm update readme.md">
       <created>1498903101252</created>
@@ -317,7 +308,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15979000" />
+    <option name="totallyTimeSpent" value="20006000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -329,8 +320,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.114583336" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -456,14 +446,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/layout/holy-grail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="26" column="19" lean-forward="false" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/layout/replaceMarquee.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -496,18 +478,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/closure/simple_counter.js">
+    <entry file="file://$PROJECT_DIR$/layout/holy-grail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
-          <caret line="1" column="7" lean-forward="false" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+          <caret line="26" column="19" lean-forward="false" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/closure/closure_ex1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        <state relative-caret-position="95">
+          <caret line="5" column="48" lean-forward="true" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/closure/simple_counter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
           <folding />
         </state>
       </provider>
