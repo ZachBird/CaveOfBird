@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        　　/*function example(){
+         　　　this.n = 'hello world !';
+          　 　console.log(this.n);
+               console.log(this);
+           　　}
+            example();*/
+            /*function ex1(){
+                this.n = "123";
+                var n = "234";
+
+            }
+            var abc = new ex1();
+            console.log(ex1.n);*/
+
+            var name = "Akita";
+            var dogs = {
+                name:"Collie",
+                showName:function(){
+                    console.log(this.name);
+                    console.log(this);
+                }
+            }
+            dogs.showName();
+            var otherName = dogs.showName;
+            otherName();
+            function User(age){
+                this.age = age;
+                var isChild = age < 12;
+                this.isLittleChild = isChild;
+            }
+            var user = new User(15);
+            alert(user.isLittleChild);
+    </script>
+</body>
+</html>
