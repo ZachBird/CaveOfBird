@@ -16,12 +16,16 @@
     }
 
     a:hover::before, a:hover::after { position: absolute; }
-    a:hover::before { content: "\e610"; left: -20px; }
-    a:hover::after { content: "\5D"; right:  -20px; }
+    a:hover::before { content: "\5b"; left: -20px; }
+    a:hover::after { content: "\5d"; right:  -20px; }/*查询content的内容要去“字符映射表”在相应的字体下查询其16进制代码。charmap*/
     </style>
 </head>
 <body>
     <!--::before ::after-->
     <a>wwww</a>
+
+    <script>
+
+    </script>
 </body>
 </html>
