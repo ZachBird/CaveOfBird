@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)http://www.bird100.cn/wp-content/uploads/2016/demo/javascript26/index2.html -->
+<html class="cye-disabled cye-nm"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>javascript鼠标滑过图片的方向进入透明背景效果</title>
+		<meta name="description" content="前端菜鸟（www.bird100.cn）是为前端初学者提供div+css、html5+css3、JavaScript、jquery、前端web开发、移动端html5开发集一体的前端知识以及前端资讯网站！学习前端，从这里开始！">
+<meta name="keywords" content="div+css，html5+css3，JavaScript，jquery，前端web开发，移动端html5开发，前端菜鸟">
+<link rel="shortcut icon" href="http://www.bird100.cn/wp-content/themes/begin/img/favicon.ico">
+<link rel="apple-touch-icon" sizes="114x114" href="http://www.bird100.cn/wp-content/themes/begin/img/favicon.png">
+		<style>
+*{margin:0; padding:0;}
+ul{width:630px; overflow:hidden; margin:100px auto;}
+li{float:left; width:200px; height:200px; background:#ccc; margin:5px; position:relative; overflow:hidden;}
+li span{position:absolute; top:0; left:200px; width:100%; height:100%; background:rgba(255,0,0,0.3);}
+li span p{font-size:14px;color:#fff;padding:10px;white-space:pre-wrap;}
+</style>
+	<style id="nightModeStyle">
+html.cye-enabled.cye-nm:not(*:-webkit-full-screen) body,
+ html.cye-enabled.cye-nm:not(*:-webkit-full-screen) #cye-workaround-body {-webkit-filter:contrast(91%) brightness(84%) invert(1);}</style><style id="cyebody">html.cye-enabled.cye-lm body{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyediv">html.cye-enabled.cye-lm div{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyetable">html.cye-enabled.cye-lm th{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}html.cye-enabled.cye-lm td{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyetextInput">html.cye-enabled.cye-lm input[type=text]{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}html.cye-enabled.cye-lm textarea{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyeselect">html.cye-enabled.cye-lm select{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyeul">html.cye-enabled.cye-lm ul{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyeChangeByClick">html.cye-enabled.cye-lm .cye-lm-tag,html.cye-enabled.cye-lm.cye-lm-tag{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+	<body style="" cz-shortcut-listen="true">
+		<script type="text/javascript" src="./javascript鼠标滑过图片的方向进入透明背景效果_files/move.js.下载"></script>
+		<script>
+		function a2d(n){
+			return n*180/Math.PI;
+		}
+		function hoverDir(obj,ev){
+			var a=ev.clientX-(obj.offsetLeft+obj.offsetWidth/2);
+			var b=obj.offsetTop+obj.offsetHeight/2-ev.clientY;
+			return Math.round((a2d(Math.atan2(b,a))+180)/90)%4;
+			
+		}
+		function through(obj){			
+			obj.onmouseenter=function(ev){
+				var oEvent=ev||event;
+				var oS=this.children[0];
+				var dir = hoverDir(obj,oEvent);				
+				switch(dir){
+					case 0:
+						oS.style.left = '-200px';
+						oS.style.top = 0;
+						break;
+					case 1:
+						oS.style.left = 0;
+						oS.style.top = '200px';
+						break;
+					case 2:
+						oS.style.left ='200px';
+						oS.style.top = 0;
+						break;
+					case 3:
+						oS.style.left = 0;
+						oS.style.top ='-200px';
+						break;
+				}				
+				move(oS,{left:0,top:0},{duration:300,easeing:'linear'});				
+			}
+			obj.onmouseleave = function(ev){
+				var oEvent = ev||event;
+				var oS = this.children[0];
+				var dir = hoverDir(obj,oEvent);
+				switch(dir){
+					case 0:
+						move(oS,{left:-200,top:0},{duration:300,easing:'linear'});
+						break;
+					case 1:
+						move(oS,{left:0,top:200},{duration:300,easing:'linear'});
+						break;
+					case 2:
+						move(oS,{left:200,top:0},{duration:300,easing:'linear'});
+						break;
+					case 3:
+						move(oS,{left:0,top:-200},{duration:300,easing:'linear'});
+						break;
+				}
+			};
+		}
+		window.onload=function(){
+			var oLi=document.getElementsByTagName("li");
+			for(var i=0;i<oLi.length;i++){
+				through(oLi[i])
+			}
+			
+		}
+		</script>				
+		<ul>
+			<li><span><p>前端菜鸟是为前端初学者提供div+css、html5+css3、JavaScript、jquery、前端web开发、移动端html5开发集一体的前端知识以及前端资讯网站！学习前端，从这里开始！</p></span></li>
+			<li><span><p>前端菜鸟是为前端初学者提供div+css、html5+css3、JavaScript、jquery、前端web开发、移动端html5开发集一体的前端知识以及前端资讯网站！学习前端，从这里开始！</p></span></li>
+			<li><span><p>前端菜鸟是为前端初学者提供div+css、html5+css3、JavaScript、jquery、前端web开发、移动端html5开发集一体的前端知识以及前端资讯网站！学习前端，从这里开始！</p></span></li>
+			<li><span><p>前端菜鸟是为前端初学者提供div+css、html5+css3、JavaScript、jquery、前端web开发、移动端html5开发集一体的前端知识以及前端资讯网站！学习前端，从这里开始！</p></span></li>
+			<li><span><p>前端菜鸟是为前端初学者提供div+css、html5+css3、JavaScript、jquery、前端web开发、移动端html5开发集一体的前端知识以及前端资讯网站！学习前端，从这里开始！</p></span></li>
+			<li><span><p>前端菜鸟是为前端初学者提供div+css、html5+css3、JavaScript、jquery、前端web开发、移动端html5开发集一体的前端知识以及前端资讯网站！学习前端，从这里开始！</p></span></li>
+		</ul>
+	
+
+<div id="Vidown_extension_alhnopeoagjmjfgcbnokcnagkecgdcdh" style="display: none;"></div><div id="vidown_float_panel_div" style="display: none;"><a id="vidown_float_panel_download" title="用【维棠】下载视频">维棠下载</a><span id="vidown_float_panel_sep">|</span><input type="button" value=" " id="vidown_float_panel_close" title="关闭"></div></body><div id="cyeBlackMaskLayer" style="background-color: rgb(19, 19, 19); position: fixed; width: 1980px; height: 1080px; z-index: -2147483648;"></div><div id="cye-workaround-body" style="position: absolute; left: 0px; top: 0px; z-index: -2147483646; background: none 0% 0% / auto repeat scroll padding-box border-box white; height: 901px; width: 1920px;"></div><div id="cye-workaround-body-image" style="position: absolute; left: 0px; top: 0px; z-index: -2147483645; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); height: 901px; width: 1920px;"></div></html>
