@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>BFC</title>
+    <style>
+    #case1 {
+        width: 960px;
+    }
+    .left1 {
+        width: 200px;
+        height: 150px;
+        background: #f66;
+        float: left;
+        word-break: break-all;
+    }
+    .right1 {
+        height: 200px;
+        background: #fcc;
+    }
+    .left2 {
+        width: 200px;
+        height: 150px;
+        background: #f66;
+        float: left;
+    }
+    .right2 {
+        height: 200px;
+        background: #fcc;
+        /*右侧栏触发BFC*/
+        overflow: hidden;
+
+    }
+</style>
+</head>
+<body>
+    <!--自适应两栏布局-->
+        <h3>没触发BFC</h3>
+        <div class="left1">Left</div>
+        <article class="right1">Right English new line need spacing in words!English new line need spacing in words!English new line need spacing in words!English new line need spacing in words!English new line need spacing in words!English new line need spacing in words!English new line need spacing in words!English new line need spacing in words!English new line need spacing in words!English new line need spacing in words!English new line need spacing in words!</article>
+
+
+
+
+        <h3>右侧通过“overflow:hidden”触发BFC</h3>
+        <div class="left2">Left</div>
+        <article class="right2">Right 中文换行需要用word-break属性</article>
+
+
+</body>
+</html>
