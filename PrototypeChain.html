@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Prototype Chain</title>
+</head>
+<script>
+    //原型链 高程书上e.g.
+    function SuperType (){
+        this.property = true
+    }
+    SuperType.prototype.getSuperValue = function (){
+        return this.property
+    }
+    function SubType (){
+        this.subproperty = false
+    }
+    SubType.prototype = new SuperType()
+    SubType.prototype.getSubValue = function (){
+        return this.subproperty
+    }
+    var instance = new SubType()
+    console.log(instance.getSuperValue())
+
+
+
+    function baseClass(){
+        this.showMsg = function(){
+            console.log("showMsg in baseClass")
+        }
+    }
+    function extendClass(){
+
+    }
+
+    var ins = new extendClass()
+    extendClass.prototype = new baseClass()
+    console.dir(ins)
+
+    ins.showMsg()
+    //为什么ins明明已经是extendClass的实例了。还是没有继承prototype
+
+
+    //for...in e.g.
+    // 定义一个each函数
+    var each = function(array , fn)
+    {
+        for(var index in array)
+        {
+            // 以window为调用者来调用fn函数，
+            // index、array[index]是传给fn函数的参数
+            fn.call(null , index , array[index]);
+        }
+    }
+    // 调用each函数，第一个参数是数组，第二个参数是函数
+    each([4, 20 , 3] , function(index , ele)
+    {
+        console.log("第" + index + "个元素是：" + ele + "<br />");
+    });
+
+    //this 在事件中的指向
+    window.onload = function (){
+        function buttonClicked(){
+        var text = (this === window) ? window : this.id
+        alert(text)
+        console.log(this)
+    }
+    var button1 = document.querySelector('#btn1')
+    var button2 = document.querySelector('#btn2')
+    var button4 = document.querySelector('#btn4')
+    button1.onclick = buttonClicked
+    button2.onclick = function (){
+        buttonClicked()
+        //console.log(this)
+
+    }
+    function handlerWrapper(event){
+    function handler(){
+        console.log(this) // 请问这里的 this 是什么
+    }
+
+    handler()
+    }
+    button4.addEventListener('click', handlerWrapper)
+    }
+
+</script>
+<body>
+    <button type="button" value="Button1" id="btn1">1</button>
+    <button type="button" value="Button2" id="btn2">2</button>
+    <button type="button" value="Button3" id="btn3">3</button>
+    <button type="button" value="Button4" id="btn4">4</button>
+</body>
+</html>
