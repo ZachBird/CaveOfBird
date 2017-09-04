@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>BFC 测试用例</title>
+    <style>
+        html,body {
+                height: 100%;
+                }
+
+        * {
+                padding: 10px;
+                margin: 0;
+                color: #000;
+                text-decoration: none;
+                list-style: none;
+                font-family: "微软雅黑"
+            }
+        .outer {
+            /*给outer属性，如果不塌陷，即符合BFC*/
+                width: 300px;
+                border: 1px solid #666;
+                padding: 10px;
+                }
+
+        .innerLeft {
+                height: 100px;
+                width: 100px;
+                float: left;
+                background: #f00;
+                }
+
+        .innerRight {
+                height: 100px;
+                width: 100px;
+                float: right;
+                background: #090;
+                }
+    </style>
+</head>
+<body>
+        <div class="outer">
+            <div class="innerLeft"></div>
+            <div class="innerRight"></div>
+        </div>
+</body>
+</html>

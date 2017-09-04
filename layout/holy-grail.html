@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Document</title>
+    <title>圣杯布局</title>
     <style type="text/css">
         *{
             margin:0;
             padding:0;
+        }
+        body{
+            background-color:#dcdddd;
         }
         header{
             width:100%;
@@ -34,8 +37,8 @@
             left:-200px;
             width:200px;
             height:200px;
-            margin-left:-100%;
-            background-color:#aa0011;
+            margin-left:-100%;/*要与中间宽度的百分比一致*/
+            background-color:#cc7eb1;
             float:left;
         }
         .right{
@@ -44,7 +47,7 @@
             width:200px;
             height:200px;
             margin-left:-200px;
-            background-color:#aaaa11;
+            background-color:#d7cf3a;
             float:left;
         }
         footer{
@@ -59,7 +62,7 @@
     <div class="container">
         <div class="middle"><h2>Middle
         中间盒子的内容中间盒子的内容中间盒子的内容中间盒子的内容中间盒子的内容中间盒子的内容中间盒子的内容中间盒子的内容中间盒子的内容</h2></div>
-        <div class="left"><h2>left</h2></div>
+        <div class="left"><h2>Left</h2></div>
         <div class="right"><h2>Right</h2></div>
     </div>
     <footer><h1>Footer内容区</h1></footer>

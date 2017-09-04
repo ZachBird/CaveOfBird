@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>圣杯布局2</title>
+        <style>
+            .wrap {
+                background-color: #D66464;
+            }
+            .clearfix:after {
+                content: "";
+                clear: both;
+                display: block;
+            }
+            .left {
+                float: left;
+                width: 100px;
+                background: #00f;
+                height: 200px;
+            }
+            .right {
+                float: right;
+                width: 150px;
+                background: #0f0;
+                height: 200px;
+            }
+            .center {
+                background: #888888;
+                margin-left: 110px;
+                margin-right: 160px;
+                height: 150px;
+            }
+        </style>
+    </head>
+    <body>
+        <!--原理非常简单，左右侧边栏定宽并浮动，中部内容区放最后不浮动、默认width：auto并设置相应外边距，让左右侧边栏浮动到上面。注意：子元素设置为浮动之后，父对象的高度就坍塌了，需要设置父对象后的元素清除浮动，这样父对象的高度才能被浮动子元素撑起来了。-->
+        <div class="wrap clearfix">
+            <div class="left">left，宽度固定，高度可固定也可以由内容撑开。</div>
+            <div class="right">right，宽度固定，高度可固定也可以由内容撑开。</div>
+            <div class="center">center，可以自适应浏览器宽度，高度可固定也可以由内容撑开。</div>
+        </div>
+    </body>
+</html>
