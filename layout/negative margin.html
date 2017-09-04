@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Document</title>
+    <title>Negative Margin</title>
     <style type="text/css">
         *{
             margin: 0;
@@ -50,23 +50,28 @@
         .color-block1{
             width:100px;
             height:100px;
-            background-color:blue;
-            float:left;
-            margin-right:-50px;
-        }
-        .color-block2{
-            width:100px;
-            height:100px;
-            background-color:yellow;
-            float:left;
-            margin-right:-50px;
-        }
-        .color-block3{
-            width:100px;
-            height:100px;
+            border:5px solid #000 ;
             background-color:red;
             float:left;
-            margin-right:-50px;
+            margin-right:-55px;
+        }
+        .color-block2{
+
+            width:100px;
+            height:100px;
+            border:5px solid #000 ;
+            background-color:yellow;
+            float:left;
+            margin-left:-10%;
+        }
+        .color-block3{
+
+            width:100px;
+            height:100px;
+            border:5px solid #000 ;
+            background-color:blue;
+            float:left;
+            /* margin-left:-10%; */
         }
     </style>
 </head>
@@ -88,6 +93,8 @@
         <li>子元素8</li>
     </ul>
     </div>
+    <!-- 以上是网上资料总结，我的总结就一句话：left、top不论正负自己动，right、bottom不论正负别的元素动！正的向外，负的向内！考虑问题的时候还要考虑到盒子的特性问题！ -->
+    <!-- 还是要把模型放在“流”中去理解，正常的“流”的“流向”是右下方向流，所以一个元素的右下边距是负值，就是后面的元素向该元素反方向流，以填补边距“负值”的位置。而左上边距是负值，则该元素自己向前面的元素流去 -->
     <h3>对浮动元素的影响</h3>
     <div class="container3">
         <div class="color-block1">Color-Block 1</div>
