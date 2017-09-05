@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>绝对定位实现三栏</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            height:100%;/*百分比高度需要给html和body设置100%的高度*/
+        }
+        .center{
+            height:100%;
+            margin:0 210px;
+            background:#10dafc;
+            column-count:2;
+            column-gap:50px;
+        }
+        .center h3{
+            column-span:all;
+        }
+        .left,.right{
+            position:absolute;
+            top:0;/*top不设置,就要调整div的顺序*/
+            width:200px;
+            height:100%;
+        }
+        .left{
+            left:0;
+            background:#cc7eb1;
+        }
+        .right{
+            right:0;
+            background-color:#d7cf3a;
+        }
+    </style>
+</head>
+<body>
+    <div class="left">Left</div>
+    <div class="center"><h3>Center</h3>
+        <p>这或许是三种方法里最直观，最容易理解的：左右两栏采用绝对定位，分别固定于页面的左右两侧，中间的主体栏用左右margin值撑开距离。于是实现了三栏自适应布局</p>
+        <p>这里的左中右三个div的顺序是可以任意调整的，这与剩下的两中方法就不一样了，需要注意一下。</p>
+        <p>此方法的优点是，理解容易，上手简单，受内部元素影响而破坏布局的概率低，就是比较经得起折腾。
+        缺点在于：如果中间栏含有最小宽度限制，或是含有宽度的内部元素，当浏览器宽度小到一定程度，会发生层重叠的情况。然而，一般情况下，除非用户显示器分辨率宽度>=1600像素，否则用户不会把浏览器缩小到1000像素以下的，所以该缺陷危害指数3.</p>
+    </div>
+    <div class="right">Right</div>
+</body>
+</html>

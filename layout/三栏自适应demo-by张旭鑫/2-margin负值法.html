@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>margin负值实现</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        html,body{
+            height:100%;
+        }
+        .main{
+            width:100%;
+            height:100%;
+            float:left;
+        }
+        .main .center{
+            height:100%;
+            margin:0 210px;
+            background:#10dafc;
+        }
+        .left,.right{
+            width:200px;
+            height:100%;
+            float:left;
+        }
+        .left{
+            margin-left:-100%;
+            background:#cc7eb1;
+        }
+        .right{
+            margin-left:-200px;
+            background:#d7cf3a;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="center">Center
+            <p>这种方法是在实际的网站中应用的最多的，我个人感觉多少有些跟风的嫌疑。此方法很难用一句话概括。首先，中间的主体要使用双层标签。外层div宽度100%显示，并且浮动（本例左浮动，下面所述依次为基础），内层div为真正的主体内容，含有左右210像素的margin值。左栏与右栏都是采用margin负值定位的，左栏左浮动，margin-left为-100%，由于前面的div宽度100%与浏览器，所以这里的-100%margin值正好使左栏div定位到了页面的左侧；右侧栏也是左浮动，其margin-left也是负值，大小为其本身的宽度即200像素。</p>
+            <p>您需要注意几个div的顺序，无论是左浮动还是右浮动，先是主体部分div，这是肯定的，至于左右两栏谁先谁后，都无所谓，我测试了IE6，Firefox，以及chrome浏览器，表现一致。</p>
+            <p>此方法的优点：三栏相互关联，可谓真正意义上的自适应，有一定的抗性——布局不易受内部影响。缺点在于：相对比较难理解些，上手不容易，代码相对复杂。出现百分比宽度，过多的负值定位，如果出现布局的bug，排查不易。</p>
+        </div>
+    </div>
+    <div class="left">Left</div>
+    <div class="right">Right</div>
+</body>
+</html>

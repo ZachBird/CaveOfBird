@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>自身浮动实现</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        html,body{
+            height:100%;
+        }
+        .center{
+            height:100%;
+            margin:0 210px;
+            background:#10dafc;
+        }
+        .left{
+            width:200px;
+            height:100%;
+            float:left;
+            background:#cc7eb1;
+        }
+        .right{
+            width:200px;
+            height:100%;
+            float:right;
+            background:#d7cf3a;
+        }
+    </style>
+</head>
+<body>
+    <div class="left">Left</div>
+    <div class="right">Right</div>
+    <div class="center">Center
+        <p>此方法代码最简单。应用了标签浮动跟随的特性。左栏左浮动，右栏右浮动，主体直接放后面，就实现了自适应。</p>
+        <p>这里三个div标签的顺序的关键是要把主体div放在最后，左右两栏div顺序任意。</p>
+        <p>此方法的优点是：代码足够简洁与高效
+        不足在于：中间主体存在克星，clear:both属性。如果要使用此方法，需避免明显的clear样式。</p>
+    </div>
+</body>
+</html>
