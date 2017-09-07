@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>background属性</title>
+    <style type="text/css">
+        div{
+            width:300px;
+            height:200px;
+            border:10px solid rgba(255,0,0,.3);
+            padding:20px;
+            font-weight:bolder;
+            font-size:24px;
+            background:url('http://static.mukewang.com/climg/582c39c00001091605000150.jpg') #ccc center bottom no-repeat;
+
+            background-origin:content-box;/*确定背景图片开始的位置*/
+            /* 该属性指定了背景从哪个区域(边框、补白或内容)开始绘制，但也仅仅能控制背景开始绘制的位置，
+            你可以用这个属性在边框上绘制背景，但边框上的背景显不显示出来那就要由background-clip来决定了 */
+            background-clip:content-box;/*该属性指定了背景在哪些区域可以显示，但与背景开始绘制的位置无关，背景的绘制的位置可以出现在不显示背景的区域，这时就相当于背景图片被不显示背景的区域裁剪了一部分一样。*/
+            background-size: 90%;
+            box-shadow: 0 0 0 20px #ccc inset;/*属性依次是X  Y  羽化程度（blur）  宽度（Spread）颜色  内外（默认为外边距）*/
+        }
+        article{
+            margin: auto 200px;
+            background: #33aae1;
+        }
+    </style>
+</head>
+<body>
+    <div>盒子模型背景计算的问题，边框，阴影效果</div>
+    <article>
+        <p>http://www.imooc.com/wenda/detail/354222本例最初开始的地方。</p>
+        <p>布局看完之后，学习具体部件的美化，看《CSS Secrets》本例是因为负边距宽度扩展问题，想改个背景色，看看到底怎么理解好 -> background-origin -> background-clip -> outline -> box-shadow -> <a href="https://github.com/cssmagic/blog/issues/54#rd">https://github.com/cssmagic/blog/issues/54#rd</a> 先挖个坑，先去layout那边施工，这边慢慢填，填扎屎！ </p>
+        <p>先写下来，box-shadow的圆角实现是靠border-radius，跟随边框的圆角而圆角。- -！
+        而outline不会贴合圆角边框。实现圆角outline的方法：旭鑫老师的博客有讲，填坑的时候，从这里开始好了！
+        <a href="http://www.zhangxinxu.com/wordpress/2015/04/css3-radius-outline/">http://www.zhangxinxu.com/wordpress/2015/04/css3-radius-outline/</a></p>
+    </article>
+
+</body>
+</html>
