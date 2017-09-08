@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS的margin塌陷（collapse） </title>
+<style type="text/css">
+.d1{
+width: 50px;
+height: 50px;
+            padding: 150px;
+            background-color: #666;
+            margin:200px;
+            border: 1px solid #000;
+}
+.d2{
+background:#aaa;
+/* padding-top:20px; */
+/* border: 1px solid yellow; */ /* 加上这句之后，d1的margin才能把他的父容器d2撑起来，为什么*/
+}
+</style>
+</head>
+
+<body>
+<div class="d2">
+<div class="d1">塌陷辣！要用各种方式触发BFC</div>
+
+
+</div>
+<p>
+    <a href="http://www.imooc.com/qadetail/176054?t=258376"  target="_blank">问题</a>
+    <a href="http://blog.chinaunix.net/uid-22414998-id-3138656.html" target="_blank">对策</a>
+    <a href="http://www.cnblogs.com/hugejinfan/p/5901320.html" target="_blank">对策</a>
+    <a href="https://www.douban.com/group/topic/3820980/" target="_blank">spacing</a>
+</p>
+
+</body>
+</html>
