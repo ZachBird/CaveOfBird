@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS的margin塌陷（collapse） </title>
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        background:#aaa;
+        /* padding-top:20px; */
+        /* border: 1px solid yellow; */ /* 加上这句之后，innerBox的margin才能把他的父容器comtainer撑起来*/
+        overflow: hidden;
+    }
+    .innerBox {
+        /* width: 50px; */
+        height: 50px;
+        padding: 50px;
+        background-color: #666;
+        margin:200px;
+        border: 1px solid #000;
+    }
+    .link {
+        /* position: absolute;
+        left: 50%;
+        transform:translate(-50%,-50%); */
+        margin-top: 20px;
+        text-align: center;
+    }
+    ul{
+        display: inline-block;
+        padding: 10px;
+        background-color: #666;
+    }
+    .hyperlink {
+        float: left;
+        margin: 8px;
+        list-style: none;
+        background: #ccc;
+        border-radius: 3px;
+    }
+    .hyperlink > a {
+        padding: 5px;
+        text-decoration: none;
+        color: rgba(33, 114, 214, 0.8);
+    }
+    .solve {
+        width: 500px;
+        margin: 0 auto;
+
+    }
+    span {
+        display: inline-block;
+        border: 2px solid #888;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="innerBox"><p>塌陷辣！要用各种方式触发BFC 或者给父容器添加边框或者内边距</p></div>
+    </div>
+    <div class="link">
+            <ul>
+                    <li class="hyperlink"><a  href="http://www.imooc.com/qadetail/176054?t=258376"  target="_blank">问题</a></li>
+                    <li class="hyperlink"><a  href="http://blog.chinaunix.net/uid-22414998-id-3138656.html" target="_blank">对策1</a></li>
+                    <li class="hyperlink"><a  href="http://www.cnblogs.com/hugejinfan/p/5901320.html" target="_blank">对策2</a></li>
+                    <li class="hyperlink"><a  href="https://www.douban.com/group/topic/3820980/" target="_blank">spacing</a></li>
+            </ul>
+    </div>
+    <div class="solve">
+            <h3>Solving:</h3>
+            <span>
+                <p>避免（上下）margin塌陷：</p>
+                <p>1.给父容器添加边框或者（上下）padding。</p>
+                <p>因为“CSS及浏览器的设计者们希望我们在布局时，如果遇到上下两个并排内容块的安排，最好只设置其中每个块上或下margin的一处即可。”</p>
+                <p>并且“对于有块级子元素的元素计算高度的方式,如果元素没有垂直边框和填充,那其高度就是其子元素顶部和底部边框边缘之间的距离”</p>
+                <p>2.触发BFC</p>
+            </span>
+    </div>
+</body>
+</html>
