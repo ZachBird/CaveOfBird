@@ -9,10 +9,15 @@
                 margin-left: 100px;
                 margin-right: 150px;
             }
-            .clearfix:after {
+            .clearfix::after {
                 content: "";
                 clear: both;
+                height: 0;
+                visibility: hidden;
                 display: block;
+            }
+            .clearfix {
+                zoom:1;
             }
             .left {
                 float: left;

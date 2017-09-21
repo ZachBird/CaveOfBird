@@ -2,41 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>BFC 测试用例</title>
+    <meta name="discription" content="可以测试某元素是否触发Block formatting context"/>
+    <title>BFC 测试demo</title>
     <style>
         html,body {
                 height: 100%;
                 }
 
-        * {
+            * {
                 padding: 10px;
                 margin: 0;
                 color: #000;
                 text-decoration: none;
                 list-style: none;
                 font-family: "微软雅黑"
-            }
+                }
 
-        .outer {
+           .outer {
             /*给outer属性，如果不塌陷，即符合BFC*/
                 width: 300px;
                 border: 1px solid #666;
                 padding: 10px;
                 }
+           .outer::after{
+                content: '';
+                display: block;
+                height: 0;
+                visibility: hidden;
+                clear: both;
+                }
+           .outer::after{
+                zoom: 1;
+                }
 
-        .innerLeft {
+           .innerLeft {
                 height: 100px;
                 width: 100px;
                 float: left;
                 background: #f00;
                 }
 
-        .innerRight {
+           .innerRight {
                 height: 100px;
                 width: 100px;
                 float: right;
                 background: #090;
                 }
+
+
     </style>
 </head>
 <body>

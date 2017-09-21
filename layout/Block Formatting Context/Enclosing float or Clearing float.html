@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="discription" content="清除浮动（闭合浮动），会用到BFC的知识，所以就拿bfc的例子改了一下，例举几种清除浮动的方法"/>
+    <title>清除浮动</title>
+    <style>
+        html,body {
+                height: 100%;
+                }
+
+            * {
+                padding: 10px;
+                margin: 0;
+                color: #000;
+                text-decoration: none;
+                list-style: none;
+                font-family: "微软雅黑"
+                }
+
+           .outer {
+            /*给outer属性，如果不塌陷，即符合BFC*/
+                width: 300px;
+                border: 1px solid #666;
+                padding: 10px;
+                /*overflow: hidden; /*3.父元素设置overflow: hidden/auto 推荐使用hidden*/
+                /*float: left;/*4.父元素也设置浮动。但是会影响整体布局，并不推荐*/
+                /*display: table;/*5.父元素设置为display: table
+                                        *display:table 本身并不会创建BFC，但是它会产生匿名框(anonymous boxes)，而匿名框中的display:table-cell可以创建新的BFC，换句话说，触发块级格式化上下文的是匿名框，而不是display:table。所以通过display:table和display:table-cell创建的BFC效果是不一样的。
+                                        **/
+                }
+            /*== 6.使用::after伪元素 比较推荐的做法==*/
+           /* .outer::after{
+                content: '';
+                display: block;
+                height: 0;
+                visibility: hidden;
+                clear: both;
+                }
+           .outer::after{
+                zoom: 1;
+                } */
+
+           .innerLeft {
+                height: 100px;
+                width: 100px;
+                float: left;
+                background: #f00;
+                }
+
+           .innerRight {
+                height: 100px;
+                width: 100px;
+                float: right;
+                background: #090;
+                }
+
+           button{
+
+           }
+           button:hover{
+
+           }
+           a{
+                position: absolute;
+                top: 350px;
+                padding-left: 20px;
+                padding-right: 20px;
+                color: #fff;
+                background-color: rgba(58, 194, 216,0.5);
+                border: 0;
+                border-radius: 0.8em;
+                color: #aaa;
+           }
+           a:hover{
+                background-color: rgba(58, 194, 216,1);
+                color: #fff;
+           }
+    </style>
+</head>
+<body>
+        <div class="outer">
+            <div class="innerLeft"></div>
+            <div class="innerRight"></div>
+            <!-- <div style="clear:both;"></div> 1.添加额外标签可以清除浮动。不建议用-->
+            <!-- <br clear="all" /> 2.利用br标签的属性。有违结构与表现分离，也不建议使用-->
+        </div>
+        <a href="http://www.iyunlu.com/view/css-xhtml/55.html" target='_blank'>来源</a>
+</body>
+</html>
