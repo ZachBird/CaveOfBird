@@ -3,11 +3,14 @@
 看了大概五六篇博文。还有旭鑫大神的文章。感觉算是有些理解了。但是不知道这个概念是不是过时了，还是被新技术取代了。因为实在是太不了解真实的前端开发是怎么样的了。既然学了，还是记录一下吧。
 扯了这么多，开始进入正题吧~
 
+> v2.0 2017.09.26 看了第三篇参考文章，想起来之前总结的，所以来充实一些。
+
 参考文章：
 - [深入理解BFC和Margin Collapse](http://www.w3cplus.com/css/understanding-bfc-and-margin-collapse.html)
-- [CSS深入理解流体特性和BFC特性下多栏自适应布局](http://www.zhangxinxu.com/wordpress/2015/02/css-deep-understand-flow-bfc-column-two-auto-layout/)
+- [CSS深入理解流体特性和BFC特性下多栏自适应布局_by 张鑫旭](http://www.zhangxinxu.com/wordpress/2015/02/css-deep-understand-flow-bfc-column-two-auto-layout/)
+- [史上最全面、最透彻的BFC原理剖析_by 左鹏飞](https://github.com/zuopf769/notebook/blob/master/fe/BFC%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90/README.md)
 
-### 1.什么是BFC？ ###
+### 什么是BFC？ ###
 > **w3c规范中的BFC定义：**
 > 
 > 浮动元素和绝对定位元素，非块级盒子的块级容器（例如 inline-blocks, table-cells, 和 table-captions），以及overflow值不为“visiable”的块级盒子，都会为他们的内容创建新的BFC（块级格式上下文）。
@@ -20,37 +23,63 @@
 > 
 > 首先BFC是一个名词，是一个独立的布局环境，我们可以理解为一个箱子（实际上是看不见摸不着的），箱子里面物品的摆放是不受外界的影响的。转换为BFC的理解则是：BFC中的元素的布局是不受外界的影响（我们往往利用这个特性来消除浮动元素对其非浮动的兄弟元素和其子元素带来的影响。）并且在一个BFC中，块盒与行盒（行盒由一行中所有的内联元素所组成）都会垂直的沿着其父元素的边框排列。
 
-就是页面中独立的块级区域，其中子元素是不会影响到外面的元素的一块区域。
+就是页面中独立的块级渲染区域，其中子元素是不会影响到外面的元素的一块区域。
 
-### 2.常见的触发BFC的条件 ###
+### 常见的触发BFC的条件 ###
 > **什么时候会触发BFC呢？常见的如下：**
-> 
+> - 根元素
 > - float的值不为none。
-> - overflow的值为auto,scroll或hidden。
+> - overflow的值为auto,scroll或hidden。（不为visible）
 > - display的值为table-cell, table-caption, inline-block中的任何一个。
-> - position的值不为relative和static。
+>
+>  display：table也认为可以生成BFC，其实这里的主要原因在于Table会默认生成一个匿名的table-cell，正是这个匿名的table-cell生成了BFC
+> - position的值为absolute或fixed。
 
-### 3.BFC的作用 ###
-两篇文章中用BFC处理的问题，大致总结如下：（具体例子还是点进去看吧，太懒了，不想挪过来。）
+### BFC的约束规则☢☢☢ ###
+> - 内部的Box会在**垂直方向**上一个接一个放置。
+> - 垂直方向上的距离由margin决定。
+> （实际上就是：属于同一个BFC的两个相邻的Box的margin会发生塌陷，**与方向无关**）
+> - 每个元素的左外边距与包含块的左边界相接触（从左向右），**即使浮动元素也是如此。**
+> （这说明BFC中子元素不会超过父元素的区域，不过**子元素如果position属性为absolute则可以超过他的包含块边界**）
+> - BFC区域不会与float元素区域重叠。
+> - 计算BFC区域高度时，**浮动子元素也参与计算**（所以触发BFC可以清除浮动）。
+> - BFC就是页面上的一个**隔离的独立容器（渲染区域）**，容器里面的子元素不会影响到外面元素，反之亦然。
+
+### BFC的作用 ###
+两篇文章中用BFC处理的问题，大致总结如下：（具体例子还是点进参考文章看吧，太懒了，不想挪过来。）
 1. 消除浮动（就是浮动带来的影响）
 2. 处理外边距塌陷的情况（margin-collapsing）
+
+>	a. 相邻元素垂直方向margin重叠
+>	
+>	b. 相邻元素水平方向margin重叠
+>	
+>	c. 嵌套元素margin重叠
+>	
+>>	i. 父元素与子元素
+>
+>>	ii. div与ul之间的**垂直距离**，取div、ul、li三者之间的最大外边距
 3. 实现自适应布局也会设计BFC的相关知识（比如清除浮动←_←）
 
-### 4.实现BFC的方式 ###
+> 《CSS权威指南》中提到**块级正常流元素的高度设置为auto**，而且**只有块级子元素**。
+> 其**默认高度**将是**从最高块级子元素的外边框边界到最低块级子元素外边框边界之间**的距离。
+> 如果块级元素**有上内边距或下内边距**，或者**有上边框或下边框**，其高度是**从其最高子元素的上外边距边界到其最低子元素的下外边距边界之间**的距离。
 
+### 实现BFC的方式 ###
 1. overflow: auto/hidden `IE7+`
 2. display: inline-block `IE6/IE7`
 3. display: table/table-cell `IE8+`
 4. 使用after伪元素：
->
-	.clearfix{
-                *zoom: 1;
-                } 
-	.clearfix::after{
-                content: '';
-                display: block;
-                height: 0;
-                clear: both;
-                }
->
-           
+```css
+.clearfix{
+	*zoom: 1;
+	} 
+.clearfix::after{
+	content: '';
+	display: block;
+	height: 0;
+	clear: both;
+	}
+```
+
+5. 还有上面[常见的触发BFC的条件](#常见的触发bfc的条件)均可，只不过表现有差异，上面四种较为常见。表现较好。

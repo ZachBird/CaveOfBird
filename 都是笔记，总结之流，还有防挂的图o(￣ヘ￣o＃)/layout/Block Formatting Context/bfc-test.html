@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="discription" content="可以测试某元素是否触发Block formatting context"/>
+    <meta name="discription" content="可以测试某元素是否触发Block Formatting Context"/>
     <title>BFC 测试demo</title>
     <style>
         html,body {
@@ -24,7 +24,8 @@
                 border: 1px solid #666;
                 padding: 10px;
                 }
-           .outer::after{
+
+           /* .outer::after{
                 content: '';
                 display: block;
                 height: 0;
@@ -33,22 +34,21 @@
                 }
            .outer::after{
                 zoom: 1;
-                }
+                } */
 
            .innerLeft {
                 height: 100px;
                 width: 100px;
                 float: left;
-                background: #f00;
+                background: pink;
                 }
 
            .innerRight {
                 height: 100px;
                 width: 100px;
                 float: right;
-                background: #090;
+                background: lightgreen;
                 }
-
 
     </style>
 </head>
